@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Painel</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, user-scalable=no">
+        <link href="../css/icon.css" rel="stylesheet">
+        <link rel="stylesheet" href="../css/materialize.min.css">
+        <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="../js/materialize.min.js"></script>
+        <script src="../js/iidv.js"></script>
+        <script src="../js/userWatcherLogged.js"></script>
+        <script src="../js/screens/add_register.js"></script>
+    </head>
+    <body>
+        
+             <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="#" class="brand-logo center" data-headerTitle></a>
+                    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                </div>
+                </nav>
+                </div>
+                <ul class="sidenav" id="mobile-demo">
+                        <li><a href="painel.html">Painel</a></li>
+                        <li><a href="logout.html">Log out</a></li>
+                    </ul>
+                <div class="container">
+                <div class="section">
+                    <h5>Novo registro</h5>
+                    <p>Adicione um novo registro financeiro ao sistema.</p>
+                </div>
+                <form id="registro" method="POST" action="?">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="valor" step=".01" type="number" class="validate">
+                            <label for="valor">Valor do gasto em reais (Ex. 10,00)</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="para" type="text" class="validate">
+                            <label for="para">Para qual empresa?</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="local" type="text" class="validate">
+                            <label for="local">Local geográfico onde ocorreu o pagamento.</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="descricao" type="text" class="validate">
+                            <label for="descricao">Descrições adicionais.</label>
+                        </div>
+                    </div>
+                    <input type="hidden" id="arquivo" value="https://institutoidv.org/wp-content/uploads/2018/04/IIDV-Logo-png.png" />
+                </form>
+                
+                <form enctype="multipart/form-data" method="POST" id="uploadForm">
+                    <div class="row">
+                        <div class="file-field input-field col s12">
+                            <div class="btn">
+                              <span>Tirar foto</span>
+                              <input type="file" name="arquivo" id="img" accept="image/*" capture="capture" />
+                            </div>
+                            <div class="file-path-wrapper">
+                              <input class="file-path validate" type="text" placeholder="Adicione uma imagem ou PDF">
+                            </div>
+                            <div class="progress"><div class="indeterminate" id="prog"></div></div>
+                          
+                        </div>
+                              
+                        <div id="prevContainer" class="col s12 m8 offset-m2 l6 offset-l3">
+                                <div style="padding:5px;" class="card-panel grey lighten-5 z-depth-1">
+                                      <img class="responsive-img"  src="https://institutoidv.org/wp-content/uploads/2018/04/IIDV-Logo-png.png" id="prev" />
+                                </div>
+                              </div>
+                    </div>
+                    
+                    
+                    <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
+                </form>
+
+                    <div class="row">
+                        <div class="col s12">
+                            <button id="sub" class="btn waves-effect waves-light" type="submit" name="action">Registrar
+                                <i class="material-icons right">send</i>
+                            </button> 
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+            </div>        
+    </body>
+</html>

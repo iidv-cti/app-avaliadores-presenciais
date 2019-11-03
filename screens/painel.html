@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Painel</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, user-scalable=no">
+        <link href="../css/icon.css" rel="stylesheet">
+        <link rel="stylesheet" href="../css/materialize.min.css">
+        <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="../js/materialize.min.js"></script>
+        <script src="../js/iidv.js"></script>
+        <script src="../js/userWatcherLogged.js"></script>
+        <script src="../js/screens/painel.js"></script>
+    </head>
+    <body>
+    <div class="navbar-fixed">
+        <nav class="nav-extended">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo center" data-headerTitle></a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        </div>
+        <div class="nav-content">
+            <ul class="tabs tabs-transparent">
+              <li class="tab"><a href="#reg">Registros</a></li>
+              <li class="tab"><a href="#info">Informações gerais</a></li>
+            </ul>
+        </div>
+    </nav>
+    </div>
+    <ul class="sidenav" id="mobile-demo">
+      <li><a href="logout.html">Log out</a></li>
+    </ul>
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="container lightgray">
+        <div id="reg">
+                <div id="regStatus"></div>
+                <div class="fixed-action-btn">
+                    <a class="btn-floating btn-large red" href="add_register.html">
+                        <i class="large material-icons">add</i>
+                    </a>
+                </div>
+        </div>
+        <div id="info">
+            <br />
+            <p>
+            Informações não disponíveis no momento.</p>
+        </div>
+    </div>
+    </body>
+</html>
