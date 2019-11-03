@@ -2,24 +2,26 @@
 
 const appHeader = 'Av. Presencial';
 const ATUALHost = 'https://testeemerson.institutoidv.org'
+let appStore = {};
+let UploadHost = 'https://cointer.institutoidv.org/inscricao/pdvagro/uploads/';
 
 $(function(){
   $('[data-headerTitle]').text(appHeader);
 });
 
-function IIDVrouteConnect(route, fn, dataset){
+function IIDVrouteConnect(data){
     $.ajax({
-        url:ATUALHost + "/"+route,
-        type:"POST",
+        url:ATUALHost + "/"+data.route,
+        type:data.method,
         processData: false,  // tell jQuery not to process the data
         contentType: false,  // tell jQuery not to set contentType
-        data: dataset,
+        data: data.data,
         headers: {
           'Content-Type' : 'application/json; charset=UTF-8',
           'Authorization' : 'Bearer '+localStorage.getItem("token")
         },
-        success(data){
-            fn(data);
+        success(response){
+            data.loader(response);
         }
     
       });
@@ -39,6 +41,9 @@ function IIDVuserStatus(fn){
             var dados=JSON.parse(data)
 
             if(dados.status){
+              appStore.user = dados.data;
+              $('[data-user-username]').text(appStore.user.name);
+              $('[data-user-cpf]').text(appStore.user.cpf);
               fn(dados);
             } else {
               fn()
