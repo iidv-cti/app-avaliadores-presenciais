@@ -31,62 +31,59 @@
                     <h5>Avaliar</h5>
                     <p>Avalie o artigo.</p>
                 </div>
-                <form id="registro" method="POST" action="?">
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input id="valor" step=".01" type="number" class="validate">
-                            <label for="valor">Valor do gasto em reais (Ex. 10,00)</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input id="para" type="text" class="validate">
-                            <label for="para">Para qual empresa?</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input id="local" type="text" class="validate">
-                            <label for="local">Local geográfico onde ocorreu o pagamento.</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input id="descricao" type="text" class="validate">
-                            <label for="descricao">Descrições adicionais.</label>
-                        </div>
-                    </div>
-                    <input type="hidden" id="arquivo" value="https://institutoidv.org/wp-content/uploads/2018/04/IIDV-Logo-png.png" />
-                </form>
-                
-                <form enctype="multipart/form-data" method="POST" id="uploadForm">
-                    <div class="row">
-                        <div class="file-field input-field col s12">
-                            <div class="btn">
-                              <span>Tirar foto</span>
-                              <input type="file" name="arquivo" id="img" accept="image/*" capture="capture" />
+                    <form id="registro" method="POST" action="?">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <select id="AP0">
+                                    <option>0.0</option>
+                                    <option>0.5</option>
+                                    <option>1.0</option>
+                                    <option>1.5</option>
+                                    <option>2.0</option>
+                                    <option>2.5</option>
+                                    <option>3.0</option>
+                                    <option>3.5</option>
+                                </select>
+                                <label for="valor">Domínio do conteúdo na apresentação</label>
                             </div>
-                            <div class="file-path-wrapper">
-                              <input class="file-path validate" type="text" placeholder="Adicione uma imagem ou PDF">
-                            </div>
-                            <div class="progress"><div class="indeterminate" id="prog"></div></div>
-                          
                         </div>
-                              
-                        <div id="prevContainer" class="col s12 m8 offset-m2 l6 offset-l3">
-                                <div style="padding:5px;" class="card-panel grey lighten-5 z-depth-1">
-                                      <img class="responsive-img"  src="https://institutoidv.org/wp-content/uploads/2018/04/IIDV-Logo-png.png" id="prev" />
-                                </div>
-                              </div>
-                    </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <select id="AP0">
+                                    <option>0.0</option>
+                                    <option>0.5</option>
+                                    <option>1.0</option>
+                                    <option>1.5</option>
+                                    <option>2.0</option>
+                                    <option>2.5</option>
+                                    <option>3.0</option>
+                                </select>
+                                <label for="valor">Utilização adequada do tempo</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <select id="AP0">
+                                    <option>0.0</option>
+                                    <option>0.5</option>
+                                    <option>1.0</option>
+                                    <option>1.5</option>
+                                    <option>2.0</option>
+                                    <option>2.5</option>
+                                    <option>3.0</option>
+                                    <option>3.5</option>
+                                </select>
+                                <label for="valor">Segurança nas respostas às perguntas</label>
+                            </div>
+                        </div>
+                    </form>
                     
-                    
-                    <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
-                </form>
+                    <h5>Total</h5>
+                    <h1 id="APT">0</h1>
 
                     <div class="row">
                         <div class="col s12">
-                            <button id="sub" class="btn waves-effect waves-light" type="submit" name="action">Registrar
+                            <button id="sub" class="btn waves-effect waves-light" type="submit" name="action">Avaliar
                                 <i class="material-icons right">send</i>
                             </button> 
                         </div>
