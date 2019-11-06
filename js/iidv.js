@@ -9,13 +9,13 @@ $(function(){
   $('[data-headerTitle]').text(appHeader);
 });
 
-function IIDVrouteConnect(data){
+function IIDVrouteConnect(data, formData={}){
     $.ajax({
         url:ATUALHost + "/"+data.route,
         type:data.method,
-        processData: false,  // tell jQuery not to process the data
-        contentType: false,  // tell jQuery not to set contentType
-        data: data.data,
+        data: JSON.stringify(formData),
+        dataType: 'json',
+        contentType: 'application/json',
         headers: {
           'Content-Type' : 'application/json; charset=UTF-8',
           'Authorization' : 'Bearer '+localStorage.getItem("token")
