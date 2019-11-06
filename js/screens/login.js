@@ -3,6 +3,11 @@ $(function(){
     
     $("#prog").css("display","none");
 
+    $("#COINTER").on("change", function(){
+        COINTER = $("#COINTER").val();
+        localStorage.setItem("COINTER", COINTER);
+    })
+
     $("#form").submit(function(e){
         e.preventDefault();
 

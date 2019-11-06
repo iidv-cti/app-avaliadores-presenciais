@@ -3,7 +3,8 @@
 const appHeader = 'Av. Presencial';
 const ATUALHost = 'https://testeemerson.institutoidv.org'
 let appStore = {};
-let UploadHost = 'https://cointer.institutoidv.org/inscricao/pdvagro/uploads/';
+let COINTER = localStorage.getItem("COINTER");
+let UploadHost = 'https://cointer.institutoidv.org/inscricao/'+COINTER+'/uploads/';
 
 $(function(){
   $('[data-headerTitle]').text(appHeader);
@@ -56,7 +57,7 @@ function IIDVuserStatus(fn){
 
 function IIDVuserLogin(user, password, fn){
     $.ajax({
-        url:ATUALHost + "/smart/pdvagro/2019/entrar",
+        url:ATUALHost + "/smart/"+COINTER+"/2019/entrar",
         type:"post",
         dataType:"html",
         data:{

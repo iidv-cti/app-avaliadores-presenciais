@@ -45,7 +45,7 @@ function findGetParameter(parameterName) {
 
             IIDVrouteConnect({
                 method: "POST",
-                route: "smart/pdvagro/2019/avaliador/presencial/trabalhos/avaliar", 
+                route: "smart/"+COINTER+"/2019/avaliador/presencial/trabalhos/avaliar", 
                 loader: avaliacaoSubmetida
             }, form)
         } catch(e) {

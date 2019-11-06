@@ -8,14 +8,14 @@ userDataLoaded = function(){
 
     IIDVrouteConnect({
         method: "GET",
-        route: "smart/pdvagro/2019/avaliador/presencial/trabalhos/avaliados", 
+        route: "smart/"+COINTER+"/2019/avaliador/presencial/trabalhos/avaliados", 
         loader: carregarPaineisAvaliados, 
         data: form
     });
     
     IIDVrouteConnect({
         method: "GET",
-        route: "smart/pdvagro/2019/avaliador/presencial/trabalhos/disponiveis", 
+        route: "smart/"+COINTER+"/2019/avaliador/presencial/trabalhos/disponiveis", 
         loader: carregarPaineisPAvaliar, 
         data: form
     });
