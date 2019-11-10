@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <widget xmlns   = "http://www.w3.org/ns/widgets"
     xmlns:gap   = "http://phonegap.com/ns/1.0"
-    id          = "iidv.registro.financas"
+    id          = "iidv.avaliadores.cointer"
     version     = "1.0.0" >
 
     <name>IIDV Avaliadores</name>
@@ -17,7 +17,7 @@
     <preference name="android-targetSdkVersion" value="26"/>
     <preference name='phonegap-version' value='cli-8.0.0' />
     <preference name="fullscreen" value="true" />
-    <preference name="stay-in-webview" value="false" />
+    <preference name="stay-in-webview" value="true" />
     <preference name="HeaderColor" value="#130e72" />
     <plugin name="cordova-plugin-inappbrowser" souce="npm" />
     <plugin name="cordova-plugin-headercolor" souce="npm" />
