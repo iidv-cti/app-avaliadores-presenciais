@@ -32,7 +32,9 @@ $(function(){
     });
   }
 
-  $('[data-var="pdf"]').attr('href', UploadHost + trabalho['arquivoPDF']);
+  $('[data-var="pdf"]').on('click', function(){
+    window.open(UploadHost + trabalho['arquivoPDF'], '_blank', 'location=yes');
+  });
   $('[data-avaliar]').attr('href', $('[data-avaliar]').attr('href') + '?id=' + idTrabalho);
   $('[data-var="id"]').text(Id(Number(idTrabalho)));
   $('[data-var="title"]').text(trabalho['titulo']);

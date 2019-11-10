@@ -4,10 +4,10 @@
     id          = "iidv.registro.financas"
     version     = "1.0.0" >
 
-    <name>IIDV Registro de Finanças</name>
+    <name>IIDV Avaliadores</name>
 
     <description>
-        Aplicativo de registro financeiro do Instituto Internacional Despertando Vocações.
+        Aplicativo de avaliações presenciais do Instituto Internacional Despertando Vocações.
     </description>
 
     <author href="cti.institutoidv.org" email="cti@institutoidv.org">
