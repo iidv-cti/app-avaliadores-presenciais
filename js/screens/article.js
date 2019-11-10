@@ -20,15 +20,10 @@ function Id(num){
 function onDeviceReady(){
   $('a').click(function () {
     url = $(this).attr("href");
-    if (typeof cordova !== "undefined" && cordova.InAppBrowser) {
-        cordova.InAppBrowser.open(url, '_system');
-    } else if (typeof navigator !== "undefined" && navigator.app) {
-        // Mobile device.
-        navigator.app.loadUrl(url, { openExternal: true });
-    } else {
+
         // Possible web browser
         window.open('https://docs.google.com/viewer?url='+url+'&embedded=true', "_blank", 'location=yes');
-    }
+    //}
     return false;
 });
 }
