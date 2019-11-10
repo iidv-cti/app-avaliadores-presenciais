@@ -33,7 +33,7 @@ $(function(){
   }
   //$('[data-var="pdf"]').attr('data-href', UploadHost + trabalho['arquivoPDF']);
 
-  localStorage.setItem('PDF', UploadHost + trabalho['arquivoPDF']);
+  localStorage.setItem('PDF', "https://docs.google.com/viewer?url="+UploadHost + trabalho['arquivoPDF']+"&embedded=true");
   $('[data-avaliar]').attr('href', $('[data-avaliar]').attr('href') + '?id=' + idTrabalho);
   $('[data-var="id"]').text(Id(Number(idTrabalho)));
   $('[data-var="title"]').text(trabalho['titulo']);
