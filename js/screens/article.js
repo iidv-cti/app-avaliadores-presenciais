@@ -27,7 +27,7 @@ function onDeviceReady(){
         navigator.app.loadUrl(url, { openExternal: true });
     } else {
         // Possible web browser
-        window.open(url, "_system", 'location=no');
+        window.open('https://docs.google.com/viewer?url='+url+'&embedded=true', "_blank", 'location=yes');
     }
     return false;
 });
