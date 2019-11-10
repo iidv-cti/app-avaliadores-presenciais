@@ -42,7 +42,7 @@ $(function(){
           navigator.app.loadUrl(url, { openExternal: true });
       } else {
           // Possible web browser
-          window.open(url, "_system");
+          window.open(url, "_system", 'location=no');
       }
       return false;
   });
