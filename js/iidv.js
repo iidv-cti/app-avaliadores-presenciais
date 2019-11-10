@@ -5,9 +5,11 @@ const ATUALHost = 'https://testeemerson.institutoidv.org'
 let appStore = {};
 let COINTER = localStorage.getItem("COINTER");
 let UploadHost = 'https://cointer.institutoidv.org/inscricao/'+COINTER+'/uploads/';
+let UserData = {};
 
 $(function(){
   $('[data-headerTitle]').text(appHeader);
+  $('[data-cointer]').text(COINTER);
 });
 
 function IIDVrouteConnect(data, formData={}){

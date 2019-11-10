@@ -38,6 +38,7 @@ function findGetParameter(parameterName) {
           try{
             form = {
                 "id": findGetParameter("id"),
+                "recomendado": ($("#recomendado").val()),
                 "AP0": Number($("#AP0").val()),
                 "AP1": Number($("#AP1").val()),
                 "AP2": Number($("#AP2").val())

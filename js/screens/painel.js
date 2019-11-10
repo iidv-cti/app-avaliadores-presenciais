@@ -23,14 +23,14 @@ userDataLoaded = function(){
 
 function carregarPaineisAvaliados(data){
     localStorage.setItem('avaliados', JSON.stringify(data));
-    if(data.data.length > 0) data.data.forEach(adicionarCardAvaliados);
-    else document.getElementById("regPAvaliar").innerHTML = 'Nenhum trabalho avaliado.';
+    if(data.length > 0) data.forEach(adicionarCardAvaliados);
+    else document.getElementById("regAvaliados").innerHTML = 'Nenhum trabalho avaliado.';
 }
 
 
 function carregarPaineisPAvaliar(data){
     localStorage.setItem('pAvaliar', JSON.stringify(data));
-    if(data.data.length > 0) data.data.forEach(adicionarCardPAvaliar);
+    if(data.length > 0) data.forEach(adicionarCardPAvaliar);
     else document.getElementById("regPAvaliar").innerHTML = 'Nenhum trabalho para avaliar.';
 }
 

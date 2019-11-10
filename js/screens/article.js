@@ -22,9 +22,15 @@ $(function(){
   let todosTrabalhosAvaliados = JSON.parse(localStorage.getItem('avaliados'));
   let idTrabalho = findGetParameter('id');
 
-  let trabalho = todosTrabalhosAvaliados.data.find((el) => {
+  let trabalho = todosTrabalhosPAvaliar.find((el) => {
     return el.id == idTrabalho;
   });
+
+  if(!trabalho){
+    trabalho = todosTrabalhosAvaliados.find((el) => {
+      return el.id == idTrabalho;
+    });
+  }
 
   $('[data-var="pdf"]').attr('href', UploadHost + trabalho['arquivoPDF']);
   $('[data-avaliar]').attr('href', $('[data-avaliar]').attr('href') + '?id=' + idTrabalho);
