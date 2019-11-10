@@ -32,6 +32,21 @@ $(function(){
     });
   }
 
+
+  $('a').click(function () {
+      url = $(this).attr("href");
+      if (typeof cordova !== "undefined" && cordova.InAppBrowser) {
+          cordova.InAppBrowser.open(url, '_system');
+      } else if (typeof navigator !== "undefined" && navigator.app) {
+          // Mobile device.
+          navigator.app.loadUrl(url, { openExternal: true });
+      } else {
+          // Possible web browser
+          window.open(url, "_system");
+      }
+      return false;
+  });
+
   $('[data-var="pdf"]').attr('href', UploadHost + trabalho['arquivoPDF']);
   $('[data-avaliar]').attr('href', $('[data-avaliar]').attr('href') + '?id=' + idTrabalho);
   $('[data-var="id"]').text(Id(Number(idTrabalho)));
