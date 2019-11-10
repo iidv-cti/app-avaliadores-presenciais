@@ -18,14 +18,16 @@ function Id(num){
 }
 
 function onDeviceReady(){
+  $('[data-var="pdf"]').attr('data-href', UploadHost + trabalho['arquivoPDF']);
+  
   $('a').click(function () {
-    url = $(this).attr("href");
+    url = $(this).attr("data-href");
 
         // Possible web browser
         window.open('https://docs.google.com/viewer?url='+url+'&embedded=true', "_blank", 'location=yes');
     //}
     return false;
-});
+  });
 }
 
 document.addEventListener("deviceready", onDeviceReady, false);
@@ -46,7 +48,6 @@ $(function(){
     });
   }
 
-  $('[data-var="pdf"]').attr('href', UploadHost + trabalho['arquivoPDF']);
   $('[data-avaliar]').attr('href', $('[data-avaliar]').attr('href') + '?id=' + idTrabalho);
   $('[data-var="id"]').text(Id(Number(idTrabalho)));
   $('[data-var="title"]').text(trabalho['titulo']);
