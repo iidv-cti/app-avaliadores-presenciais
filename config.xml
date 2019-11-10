@@ -17,7 +17,7 @@
     <preference name="android-targetSdkVersion" value="26"/>
     <preference name='phonegap-version' value='cli-8.0.0' />
     <preference name="fullscreen" value="true" />
-    <preference name="stay-in-webview" value="true" />
+    <preference name="stay-in-webview" value="false" />
     <preference name="HeaderColor" value="#130e72" />
     <plugin name="cordova-plugin-inappbrowser" souce="npm" />
     <plugin name="cordova-plugin-headercolor" souce="npm" />
