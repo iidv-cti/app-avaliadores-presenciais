@@ -3,6 +3,9 @@ $(function(){
     
     $("#prog").css("display","none");
 
+    COINTER = $("#COINTER").val();
+    localStorage.setItem("COINTER", COINTER);
+
     $("#COINTER").on("change", function(){
         COINTER = $("#COINTER").val();
         localStorage.setItem("COINTER", COINTER);

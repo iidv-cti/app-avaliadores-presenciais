@@ -1,5 +1,6 @@
 $(function(){
     $("#prog").css("display","none");
+    $("#pesquisarTrabalho").on("click", pesquisarTrabalho);
 });
 
 userDataLoaded = function(){
@@ -21,6 +22,24 @@ userDataLoaded = function(){
     });
 }
 
+function pesquisarTrabalho(){
+    let id = toId(Number($("#idTrabalho").val()));
+
+    IIDVrouteConnect({
+        method: "GET",
+        route: "smart/"+COINTER+"/2019/avaliador/presencial/trabalhos/pesquisar?trabalhoId="+id, 
+        loader: carregarTPesquisar
+    });
+}
+
+
+function carregarTPesquisar(data){
+    localStorage.setItem('pesquisa', JSON.stringify(data));
+    document.getElementById("regTPesquisa").innerHTML = '';
+    if(data.length > 0) data.forEach(adicionarCardTPesquisar);
+    else document.getElementById("regTPesquisa").innerHTML = 'Nenhum trabalho localizado.';
+}
+
 function carregarPaineisAvaliados(data){
     localStorage.setItem('avaliados', JSON.stringify(data));
     if(data.length > 0) data.forEach(adicionarCardAvaliados);
@@ -32,6 +51,10 @@ function carregarPaineisPAvaliar(data){
     localStorage.setItem('pAvaliar', JSON.stringify(data));
     if(data.length > 0) data.forEach(adicionarCardPAvaliar);
     else document.getElementById("regPAvaliar").innerHTML = 'Nenhum trabalho para avaliar.';
+}
+
+function adicionarCardTPesquisar(data){
+    document.getElementById("regTPesquisa").innerHTML += cardHTML(data.titulo, data.id, data.AP0, data.AP1, data.AP2);
 }
 
 function adicionarCardAvaliados(data){
@@ -47,6 +70,12 @@ function Id(num){
   let cp = 5;
   return cn + (num*cp);
 }
+
+function toId(num){
+    let cn = 100;
+    let cp = 5;
+    return (num - cn)/cp;
+  }
 
 function cardHTML(title, id, n0, n1, n2){
     return [
