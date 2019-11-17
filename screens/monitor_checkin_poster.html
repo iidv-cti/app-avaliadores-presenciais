@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Painel</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, user-scalable=no">
+        <link href="../css/icon.css" rel="stylesheet">
+        <link rel="stylesheet" href="../css/materialize.min.css">
+        <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="../js/materialize.min.js"></script>
+        <script src="../js/iidv.js"></script>
+        <script src="../js/userWatcherLogged.js"></script>
+        <script src="../js/screens/painel.js"></script>
+    </head>
+    <body>
+    <div class="navbar-fixed">
+        <nav class="nav-extended">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo center" data-headerTitle></a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        </div>
+        <!-- <div class="nav-content">
+            <ul class="tabs tabs-transparent">
+              <li class="tab"><a href="#pavaliar">p/ Avaliar</a></li>
+              <li class="tab"><a href="#avaliados">Avaliados</a></li>
+              <li class="tab"><a href="#ptrabalho">Procurar trabalho</a></li>
+            </ul>
+        </div> -->
+    </nav>
+    </div>
+    <ul class="sidenav" id="mobile-demo">
+        <li style="padding:20px">
+            <h4 data-user-username></h4>
+            <h5 data-user-cpf></h5>
+            <h5 data-cointer></h5>
+        </li>
+        <li><a href="logout.html">Sair</a></li>
+    </ul>
+    <!-- <br />
+    <br />
+    <br /> -->
+    <br />
+    <div class="container lightgray">
+        <h2>Faça CheckIn de um trabalho na categoria Pôster</h2>
+        
+        <div class="form-group">
+          <input id="buscarUsuário" type="text" class="form-control" />
+          <label for="idTrabalho">Nome do trabalho / ID do trabalho / Autor do trabalho</label>
+        </div>
+        <div id="todosUsuarios"></div>
+    </div>
+    </body>
+</html>

@@ -34,7 +34,7 @@
                     <form id="registro" method="POST" action="?">
                         <div class="row">
                             <div class="input-field col s12">
-                                <select id="AP0">
+                                <select required id="AP0">
                                     <option value="0.0">0.0</option>
                                     <option value="0.5">0.5</option>
                                     <option value="1.0">1.0</option>
@@ -43,27 +43,26 @@
                                     <option value="2.5">2.5</option>
                                     <option value="3.0">3.0</option>
                                     <option value="3.5">3.5</option>
+                                    <option value="3.5">4.0</option>
                                 </select>
                                 <label for="valor">Domínio do conteúdo na apresentação</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <select id="AP1">
+                                <select required id="AP1">
                                     <option value="0.0">0.0</option>
                                     <option value="0.5">0.5</option>
                                     <option value="1.0">1.0</option>
                                     <option value="1.5">1.5</option>
                                     <option value="2.0">2.0</option>
-                                    <option value="2.5">2.5</option>
-                                    <option value="3.0">3.0</option>
                                 </select>
                                 <label for="valor">Utilização adequada do tempo</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <select id="AP2">
+                                <select required id="AP2">
                                     <option value="0.0">0.0</option>
                                     <option value="0.5">0.5</option>
                                     <option value="1.0">1.0</option>
@@ -72,13 +71,14 @@
                                     <option value="2.5">2.5</option>
                                     <option value="3.0">3.0</option>
                                     <option value="3.5">3.5</option>
+                                    <option value="3.5">4.0</option>
                                 </select>
                                 <label for="valor">Segurança nas respostas às perguntas</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <select id="recomendado">
+                                <select required id="recomendado">
                                     <option value="">Escolha</option>
                                     <option value="2">Sim</option>
                                     <option value="1">Não</option>
@@ -86,6 +86,14 @@
                                 <label for="valor">Trabalho recomendado para premiação?</label>
                             </div>
                         </div>
+
+                        
+                        <div class="row">
+                                <div class="input-field col s12">
+                                    <textarea id="comentarios" required class="form-control" placeholder="Comentários"></textarea>
+                                    <label for="comentarios">Comentários sobre o trabalho</label>
+                                </div>
+                            </div>
                     </form>
                     
                     <h5>Total</h5>
