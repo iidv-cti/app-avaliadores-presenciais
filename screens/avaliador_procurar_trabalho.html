@@ -50,5 +50,32 @@
         <br />
         <div id="trabalhos"></div>
     </div>
+    <script>
+    
+    $(function(){
+      $("#idTrabalho").on("change", function(){
+          document.getElementById("trabalhos").innerHTML = 'Carregando...';
+        let id = toId(Number($("#idTrabalho").val()));
+
+        IIDVrouteConnect({
+            method: "GET",
+            route: "smart/"+COINTER+"/2019/avaliador/presencial/trabalhos/pesquisar?trabalhoId="+id, 
+            loader: carregarTPesquisar
+        });
+      });
+
+      function carregarTPesquisar(data){
+          localStorage.setItem('avaliados', JSON.stringify(data));
+          document.getElementById("trabalhos").innerHTML = '';
+          if(data.length > 0) data.forEach(adicionarCardTPesquisar);
+          else document.getElementById("trabalhos").innerHTML = 'Nenhum trabalho localizado.';
+      }
+
+      function adicionarCardTPesquisar(data){
+          document.getElementById("trabalhos").innerHTML += cardHTML(data.titulo, data.id, data.AP0, data.AP1, data.AP2);
+      }
+    });
+
+    </script>
     </body>
 </html>

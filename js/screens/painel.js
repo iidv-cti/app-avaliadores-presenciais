@@ -1,69 +1,69 @@
 $(function(){
     $("#prog").css("display","none");
-    $("#pesquisarTrabalho").on("click", pesquisarTrabalho);
+    // $("#pesquisarTrabalho").on("click", pesquisarTrabalho);
 });
 
-userDataLoaded = function(){
-    var form = new FormData;
-    form.append("uid", userData.uid);
+// userDataLoaded = function(){
+//     var form = new FormData;
+//     form.append("uid", userData.uid);
 
-    IIDVrouteConnect({
-        method: "GET",
-        route: "smart/"+COINTER+"/2019/avaliador/presencial/trabalhos/avaliados", 
-        loader: carregarPaineisAvaliados, 
-        data: form
-    });
+//     IIDVrouteConnect({
+//         method: "GET",
+//         route: "smart/"+COINTER+"/2019/avaliador/presencial/trabalhos/avaliados", 
+//         loader: carregarPaineisAvaliados, 
+//         data: form
+//     });
     
-    IIDVrouteConnect({
-        method: "GET",
-        route: "smart/"+COINTER+"/2019/avaliador/presencial/trabalhos/disponiveis", 
-        loader: carregarPaineisPAvaliar, 
-        data: form
-    });
-}
+//     IIDVrouteConnect({
+//         method: "GET",
+//         route: "smart/"+COINTER+"/2019/avaliador/presencial/trabalhos/disponiveis", 
+//         loader: carregarPaineisPAvaliar, 
+//         data: form
+//     });
+// }
 
-function pesquisarTrabalho(){
-    let id = toId(Number($("#idTrabalho").val()));
+// function pesquisarTrabalho(){
+//     let id = toId(Number($("#idTrabalho").val()));
 
-    IIDVrouteConnect({
-        method: "GET",
-        route: "smart/"+COINTER+"/2019/avaliador/presencial/trabalhos/pesquisar?trabalhoId="+id, 
-        loader: carregarTPesquisar
-    });
-}
-
-
-function carregarTPesquisar(data){
-    localStorage.setItem('pesquisa', JSON.stringify(data));
-    document.getElementById("regTPesquisa").innerHTML = '';
-    if(data.length > 0) data.forEach(adicionarCardTPesquisar);
-    else document.getElementById("regTPesquisa").innerHTML = 'Nenhum trabalho localizado.';
-}
-
-function carregarPaineisAvaliados(data){
-    localStorage.setItem('avaliados', JSON.stringify(data));
-    if(data.length > 0) data.forEach(adicionarCardAvaliados);
-    else document.getElementById("regAvaliados").innerHTML = 'Nenhum trabalho avaliado.';
-}
+//     IIDVrouteConnect({
+//         method: "GET",
+//         route: "smart/"+COINTER+"/2019/avaliador/presencial/trabalhos/pesquisar?trabalhoId="+id, 
+//         loader: carregarTPesquisar
+//     });
+// }
 
 
-function carregarPaineisPAvaliar(data){
-    localStorage.setItem('pAvaliar', JSON.stringify(data));
-    if(data.length > 0) data.forEach(adicionarCardPAvaliar);
-    else document.getElementById("regPAvaliar").innerHTML = 'Nenhum trabalho para avaliar.';
-}
+// function carregarTPesquisar(data){
+//     localStorage.setItem('pesquisa', JSON.stringify(data));
+//     document.getElementById("regTPesquisa").innerHTML = '';
+//     if(data.length > 0) data.forEach(adicionarCardTPesquisar);
+//     else document.getElementById("regTPesquisa").innerHTML = 'Nenhum trabalho localizado.';
+// }
 
-function adicionarCardTPesquisar(data){
-    document.getElementById("regTPesquisa").innerHTML += cardHTML(data.titulo, data.id, data.AP0, data.AP1, data.AP2);
-}
+// function carregarPaineisAvaliados(data){
+//     localStorage.setItem('avaliados', JSON.stringify(data));
+//     if(data.length > 0) data.forEach(adicionarCardAvaliados);
+//     else document.getElementById("regAvaliados").innerHTML = 'Nenhum trabalho avaliado.';
+// }
 
-function adicionarCardAvaliados(data){
-    document.getElementById("regAvaliados").innerHTML += cardHTML(data.titulo, data.id, data.AP0, data.AP1, data.AP2);
-}
 
-function adicionarCardPAvaliar(data){
-    document.getElementById("regPAvaliar").innerHTML += cardHTML(data.titulo, data.id, data.AP0, data.AP1, data.AP2);
-}
+// function carregarPaineisPAvaliar(data){
+//     localStorage.setItem('pAvaliar', JSON.stringify(data));
+//     if(data.length > 0) data.forEach(adicionarCardPAvaliar);
+//     else document.getElementById("regPAvaliar").innerHTML = 'Nenhum trabalho para avaliar.';
+// }
+
+// function adicionarCardTPesquisar(data){
+//     document.getElementById("regTPesquisa").innerHTML += cardHTML(data.titulo, data.id, data.AP0, data.AP1, data.AP2);
+// }
+
+// function adicionarCardAvaliados(data){
+//     document.getElementById("regAvaliados").innerHTML += cardHTML(data.titulo, data.id, data.AP0, data.AP1, data.AP2);
+// }
+
+// function adicionarCardPAvaliar(data){
+//     document.getElementById("regPAvaliar").innerHTML += cardHTML(data.titulo, data.id, data.AP0, data.AP1, data.AP2);
+// }
   
 function Id(num){
   let cn = 100;
