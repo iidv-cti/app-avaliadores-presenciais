@@ -77,7 +77,7 @@ function toId(num){
     return (num - cn)/cp;
   }
 
-function cardHTML(title, id, n0, n1, n2){
+function cardHTML(title, id, n0, n1, n2, categoria){
     return [
         "  <div class=\"row \">"
         +"  <div class=\"col s12\">"
@@ -90,6 +90,7 @@ function cardHTML(title, id, n0, n1, n2){
         +"    <li class=\"collection-item\"><div>N0<a href=\"#!\" class=\"secondary-content\">"+n0+"</a></div></li>"
         +"    <li class=\"collection-item\"><div>N1<a href=\"#!\" class=\"secondary-content\">"+n1+"</a></div></li>"
         +"    <li class=\"collection-item\"><div>N2<a href=\"#!\" class=\"secondary-content\">"+n2+"</a></div></li>"
+        +"    <li class=\"collection-item\"><div>Categoria<a href=\"#!\" class=\"secondary-content\">"+categoria+"</a></div></li>"
         +"</ul>"
         +"      <div class=\"card-content\">"
         +"        <a href=\"article.html?id="+id+"\">Ver artigo</a>"
@@ -99,3 +100,16 @@ function cardHTML(title, id, n0, n1, n2){
         +"</div>"
       ];
 }
+
+function findGetParameter(parameterName) {
+    var result = null,
+        tmp = [];
+    location.search
+        .substr(1)
+        .split("&")
+        .forEach(function (item) {
+          tmp = item.split("=");
+          if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+        });
+    return result;
+  }

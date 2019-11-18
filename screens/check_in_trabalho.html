@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Painel</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, user-scalable=no">
+        <link href="../css/icon.css" rel="stylesheet">
+        <link rel="stylesheet" href="../css/materialize.min.css">
+        <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="../js/materialize.min.js"></script>
+        <script src="../js/iidv.js"></script>
+        <script src="../js/userWatcherLogged.js"></script>
+        <script src="../js/screens/avaliar.js"></script>
+    </head>
+    <body>
+        
+             <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="#" class="brand-logo center" data-headerTitle></a>
+                    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                </div>
+                </nav>
+                </div>
+                <ul class="sidenav" id="mobile-demo">
+                        <li><a href="painel.html">Painel</a></li>
+                        <li><a href="logout.html">Sair</a></li>
+                    </ul>
+                <div class="container">
+                <div class="section">
+                    <h5>Check In</h5>
+                    <p>Realize o checkin.</p>
+                </div>
+                    <form id="registro" method="POST" action="?">
+                        
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <select id="checkInTypeDeclared">
+                                    <option value="">Escolha o tipo de Check In</option>
+                                    <option value="ENTRADA">Entrada</option>
+                                    <option value="SAIDA">Saída</option>
+                                </select>
+                                <label for="valor">Modo de Check In</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input type="text" disabled id="nomeUsuario" />
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input type="text" disabled id="cpfUsuario" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input type="text" disabled id="checkInType" />
+                            </div>
+                        </div>
+                        
+
+                    <div class="row">
+                            <div class="col s12">
+                                <a href="painel.html" class="btn waves-effect waves-light">Voltar</a>
+                                <button class="btn waves-effect waves-light" type="submit" name="action">GERAR CHECK IN
+                                    <i class="material-icons right">send</i>
+                                </button> 
+                            </div>
+                        </div>
+                    </form>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+            </div>        
+
+            <script>
+            
+            $(function(){
+              $("#checkInType").val(localStorage.getItem('checkIn_tipo'));
+              let todosTrabalhosPAvaliar = JSON.parse(localStorage.getItem('pAvaliar'));
+              let todosCheckIn = JSON.parse(localStorage.getItem('checkIn'));
+              let idUsuario = findGetParameter('id');
+
+              let usuario = todosCheckIn.find((el) => {
+                return el.id == idUsuario;
+              });
+
+              $("#nomeUsuario").val(usuario['nome']);
+              $("#cpfUsuario").val(usuario['cpf']);
+
+              $("#registro").on("submit", function(){
+                   
+                  let checkInTypeDeclared = $("#checkInTypeDeclared").val();
+
+                  if(
+                    checkInTypeDeclared.length === 0
+                  ){
+                      alert("Por favor preencha todos os campos.");
+                      return false;
+                  }
+
+
+                  return false;
+              })
+
+            })
+            
+            </script>
+    </body>
+</html>

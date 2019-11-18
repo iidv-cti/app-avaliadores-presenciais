@@ -35,6 +35,17 @@ $(function(){
 
   localStorage.setItem('PDF', "https://docs.google.com/viewer?url="+UploadHost + trabalho['arquivoPDF']+"&embedded=true");
   $('[data-avaliar]').attr('href', $('[data-avaliar]').attr('href') + '?id=' + idTrabalho);
+  $('[data-checkin]').attr('href', $('[data-checkin]').attr('href') + '?id=' + idTrabalho);
   $('[data-var="id"]').text(Id(Number(idTrabalho)));
   $('[data-var="title"]').text(trabalho['titulo']);
+  $('[data-var="autores"]').text(trabalho['autores']);
+  $('[data-var="tipo"]').text(trabalho['categoria']);
+  
+  if(trabalho['categoria'].toUpperCase() == 'COMUNICAÇÃO ORAL'){
+    $('[data-var="comunicacao_oral"]').css('display', 'inline-block');
+  } 
+  
+  if(trabalho['categoria'].toUpperCase() == 'RELATO DE EXPERIÊNCIA'){
+    $('[data-var="relato_experiencia"]').css('display', 'inline-block');
+  }
 })

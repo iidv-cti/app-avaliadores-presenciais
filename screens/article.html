@@ -42,12 +42,21 @@
                           <small>ID</small><br />
                           <span data-var='id'>...</span>
                         </h4>
+                        <h4>
+                          <small>Autores</small><br />
+                          <span data-var='autores'>...</span>
+                        </h4>
+                        <h4>
+                          <small>Tipo</small><br />
+                          <span data-var='tipo'>...</span>
+                        </h4>
                         <h3>
                           <a onclick="window.open(localStorage.getItem('PDF'), '_blank', 'location=yes')" class="btn waves-effect waves-light">Acessar PDF</a>
                         </h3><br /><br />
                         <h3>
                           <a href="painel.html" class="btn waves-effect waves-light">Voltar</a>
-                          <a href="avaliar.html" data-avaliar class="btn waves-effect waves-light">Avaliar</a>
+                          <a href="avaliar.html" style="display: none;" data-var="comunicacao_oral" data-avaliar class="btn waves-effect waves-light display-none">Avaliar</a>
+                          <a href="check_in_trabalho.html" style="display: none;" data-var="relato_experiencia" data-checkin class="btn waves-effect waves-light display-none">Check In do trabalho</a>
                         </h3>
                     </div>
                 </form>
