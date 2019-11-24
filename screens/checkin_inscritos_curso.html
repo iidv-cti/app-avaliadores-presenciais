@@ -41,11 +41,11 @@
     <br /> -->
     <br />
     <div class="container lightgray">
-        <h2>Faça CheckIn de um usuário em um curso / palestra / workshop</h2>
+        <h2>Faça CheckIn de um usuário no curso.</h2>
         
         <div class="form-group">
           <input id="buscarUsuario" type="text" class="form-control" />
-          <label for="buscarUsuario">Nome do curso / palestra / workshop</label>
+          <label for="buscarUsuario">Nome do usuário / CPF do usuário / Matrícula do usuário</label>
         </div>
         <div id="todosUsuarios"></div>
     </div>
@@ -53,22 +53,27 @@
     <script>
     
         $(function(){
-      $("#buscarUsuario").on("change", function(){
+          
+          let searchUsers = function(){
           document.getElementById("todosUsuarios").innerHTML = 'Carregando...';
         
         IIDVrouteConnect({
                 method: "GET",
-                route: "smart/"+COINTER+"/2019/cursos/todos?q="+$("#buscarUsuario").val(), 
+                route: "smart/"+COINTER+"/2019/cursos/inscritos?curso="+get('idCurso')+"&q="+$("#buscarUsuario").val(), 
                 loader: carregarTPesquisar
             });
-      });
+      }
+      
+setTimeout(searchUsers, 500);
+
+      $("#buscarUsuario").on("change", searchUsers);
 
           function carregarTPesquisar(data){
             localStorage.setItem('checkIn_tipo', 'CONGRESSISTA');
-              localStorage.setItem('cursos', JSON.stringify(data));
+              localStorage.setItem('checkIn', JSON.stringify(data));
               document.getElementById("todosUsuarios").innerHTML = '';
               if(data.length > 0) data.forEach(adicionarCardTPesquisar);
-              else document.getElementById("todosUsuarios").innerHTML = 'Nenhum trabalho localizado.';
+              else document.getElementById("todosUsuarios").innerHTML = 'Nenhum usuário localizado.';
           }
     
           function adicionarCardTPesquisar(data){
@@ -83,14 +88,19 @@ function userCard(name, cpf, id){
         +"      <div class=\"card-content\">"
         +"        <span class=\"card-title\">"+name+"</span>"
         +"      </div>"
+        +"<ul class=\"collection\">"
+        +"    <li class=\"collection-item\"><div>CPF<a href=\"#!\" class=\"secondary-content\">"+cpf+"</a></div></li>"
+        +"    <li class=\"collection-item\"><div>ID<a href=\"#!\" class=\"secondary-content\">"+id+"</a></div></li>"
+        +"</ul>"
         +"      <div class=\"card-content\">"
-        +"        <a href=\"checkin_inscritos_curso.html?idCurso="+id+"\">Escolher e visualizar inscritos.</a>"
+        +"        <a href=\"checkin_usuario_curso.html?idCurso="+get('idCurso')+"&idUsuario="+id+"\">Fazer Check In do usuário no curso.</a>"
         +"      </div>"
         +"    </div>"
         +"  </div>"
         +"</div>"
       ];
 }
+
         });
     
         </script>

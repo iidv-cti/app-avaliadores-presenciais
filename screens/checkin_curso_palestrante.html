@@ -41,47 +41,58 @@
     <br /> -->
     <br />
     <div class="container lightgray">
-        <h2>Procurar trabalho por ID</h2>
-        <br />
+        <h2>Faça CheckIn do palestrante em seu curso / palestra / workshop</h2>
+        
         <div class="form-group">
-          <input id="idTrabalho" type="text" class="form-control" />
-          <label for="idTrabalho">ID do Trabalho</label>
+          <input id="buscarUsuario" type="text" class="form-control" />
+          <label for="buscarUsuario">Nome do curso / palestra / workshop</label>
         </div>
-        <br />
-        <div id="trabalhos"></div>
+        <div id="todosUsuarios"></div>
     </div>
+    
     <script>
     
-    $(function(){
-      $("#idTrabalho").on("change", function(){
-          document.getElementById("trabalhos").innerHTML = 'Carregando...';
-
-          let id;
-        if(!isNaN($("#idTrabalho").val())){
-            id = toId(Number($("#idTrabalho").val()));
-        } else {
-            id = $("#idTrabalho").val();
-        }
-
+        $(function(){
+      $("#buscarUsuario").on("change", function(){
+          document.getElementById("todosUsuarios").innerHTML = 'Carregando...';
+        
         IIDVrouteConnect({
-            method: "GET",
-            route: "smart/"+COINTER+"/2019/avaliador/presencial/trabalhos/pesquisar?trabalhoId="+id, 
-            loader: carregarTPesquisar
-        });
+                method: "GET",
+                route: "smart/"+COINTER+"/2019/cursos/todos?q="+$("#buscarUsuario").val(), 
+                loader: carregarTPesquisar
+            });
       });
 
-      function carregarTPesquisar(data){
-          localStorage.setItem('avaliados', JSON.stringify(data));
-          document.getElementById("trabalhos").innerHTML = '';
-          if(data.length > 0) data.forEach(adicionarCardTPesquisar);
-          else document.getElementById("trabalhos").innerHTML = 'Nenhum trabalho localizado.';
-      }
-
-      function adicionarCardTPesquisar(data){
-          document.getElementById("trabalhos").innerHTML += cardHTML(data.titulo, data.id, data.AP0, data.AP1, data.AP2, data.categoria);
-      }
-    });
-
-    </script>
+          function carregarTPesquisar(data){
+            localStorage.setItem('checkIn_tipo', 'CONGRESSISTA');
+              localStorage.setItem('cursos', JSON.stringify(data));
+              document.getElementById("todosUsuarios").innerHTML = '';
+              if(data.length > 0) data.forEach(adicionarCardTPesquisar);
+              else document.getElementById("todosUsuarios").innerHTML = 'Nenhum trabalho localizado.';
+          }
+    
+          function adicionarCardTPesquisar(data){
+              document.getElementById("todosUsuarios").innerHTML += userCard(data.nome, data.cpf, data.id);
+          }
+          
+function userCard(name, cpf, id){
+    return [
+        "  <div class=\"row \">"
+        +"  <div class=\"col s12\">"
+        +"    <div class=\"card \">"
+        +"      <div class=\"card-content\">"
+        +"        <span class=\"card-title\">"+name+"</span>"
+        +"      </div>"
+        +"      <div class=\"card-content\">"
+        +"        <a href=\"checkin_palestrante.html?idPalestrante="+get('idPalestrante')+"&idCurso="+id+"\">Escolher e realizar Check In.</a>"
+        +"      </div>"
+        +"    </div>"
+        +"  </div>"
+        +"</div>"
+      ];
+}
+        });
+    
+        </script>
     </body>
 </html>

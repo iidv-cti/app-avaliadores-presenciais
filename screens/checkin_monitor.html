@@ -28,12 +28,22 @@
                     </ul>
                 <div class="container">
                 <div class="section">
-                    <h5>Check In do trabalho</h5>
-                    <p>Realize o checkin do trabalho.</p>
+                    <h5>Check In do monitor</h5>
+                    <p>Realize o checkin.</p>
                 </div>
                     <form id="registro" method="POST" action="?">
                         
-                        <B>Dados do apresentador</B>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <select id="checkInTypeDeclared">
+                                    <option value="">Escolha o tipo de Check In</option>
+                                    <option value="CHECKIN_ENTRADA_MONITOR">Entrada</option>
+                                    <option value="CHECKIN_SAIDA_MONITOR">Saída</option>
+                                </select>
+                                <label for="valor">Modo de Check In</label>
+                            </div>
+                        </div>
+
                         <div class="row">
                             <div class="input-field col s12">
                                 <input type="text" disabled id="nomeUsuario" />
@@ -46,28 +56,7 @@
                             </div>
                         </div>
                         
-                        <B>Dados do trabalho</B>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input type="text" disabled id="idTrabalho" />
-                            </div>
-                        </div>
-                        
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input type="text" disabled id="tituloTrabalho" />
-                            </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input type="text" disabled id="tipoTrabalho" />
-                            </div>
-                        </div>
-                        
-
-                    </form>
-                    
                     <div class="row">
                             <div class="col s12">
                                 <a href="painel.html" class="btn waves-effect waves-light">Voltar</a>
@@ -76,6 +65,7 @@
                                 </button> 
                             </div>
                         </div>
+                    </form>
                     <br />
                     <br />
                     <br />
@@ -90,23 +80,10 @@
             <script>
             
             $(function(){
-
+              $("#checkInType").val(localStorage.getItem('checkIn_tipo'));
               let todosTrabalhosPAvaliar = JSON.parse(localStorage.getItem('pAvaliar'));
-                let todosTrabalhosAvaliados = JSON.parse(localStorage.getItem('avaliados'));
-                let idTrabalho = findGetParameter('idTrabalho');
-
-                let trabalho = todosTrabalhosPAvaliar.find((el) => {
-                    return el.id == idTrabalho;
-                });
-
-                if(!trabalho){
-                    trabalho = todosTrabalhosAvaliados.find((el) => {
-                    return el.id == idTrabalho;
-                    });
-                }
-
               let todosCheckIn = JSON.parse(localStorage.getItem('checkIn'));
-              let idUsuario = findGetParameter('idUsuario');
+              let idUsuario = findGetParameter('id');
 
               let usuario = todosCheckIn.find((el) => {
                 return el.id == idUsuario;
@@ -114,9 +91,21 @@
 
               $("#nomeUsuario").val(usuario['nome']);
               $("#cpfUsuario").val(usuario['cpf']);
-              $("#idTrabalho").val(Id(trabalho['id']));
-              $("#tituloTrabalho").val(trabalho['titulo']);
-              $("#tipoTrabalho").val(trabalho['categoria']);
+
+              $("#registro").on("submit", function(){
+                   
+                  let checkInTypeDeclared = $("#checkInTypeDeclared").val();
+
+                  if(
+                    checkInTypeDeclared.length === 0
+                  ){
+                      alert("Por favor preencha todos os campos.");
+                      return false;
+                  }
+
+
+                  return false;
+              })
 
               $("#act").click(function(){
                 if(!trava){
@@ -134,13 +123,11 @@
                             }
                         }
                     }, {
-                        "tipo": 'CHECKIN_TRABALHO',
+                        "tipo": $("#checkInTypeDeclared").val(),
                         "cpf": $("#cpfUsuario").val(),
                         "id": usuario['id'],//$("#cpfUsuario").val(),
                         "matricula": usuario['matricula'],//$("#cpfUsuario").val(),
-                        "nome": $("#nomeUsuario").val(),
-                        "titulo_trabalho": trabalho['titulo'],
-                        "id_trabalho": trabalho['id']
+                        "nome": $("#nomeUsuario").val()
                     })
                 } else {
                     alert("O sistema está processando seu pedido... Aguarde até termos uma resposta.");

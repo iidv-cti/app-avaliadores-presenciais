@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Painel</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, user-scalable=no">
+        <link href="../css/icon.css" rel="stylesheet">
+        <link rel="stylesheet" href="../css/materialize.min.css">
+        <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="../js/materialize.min.js"></script>
+        <script src="../js/iidv.js"></script>
+        <script src="../js/userWatcherLogged.js"></script>
+        <script src="../js/screens/painel.js"></script>
+    </head>
+    <body>
+    <div class="navbar-fixed">
+        <nav class="nav-extended">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo center" data-headerTitle></a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        </div>
+        <!-- <div class="nav-content">
+            <ul class="tabs tabs-transparent">
+              <li class="tab"><a href="#pavaliar">p/ Avaliar</a></li>
+              <li class="tab"><a href="#avaliados">Avaliados</a></li>
+              <li class="tab"><a href="#ptrabalho">Procurar trabalho</a></li>
+            </ul>
+        </div> -->
+    </nav>
+    </div>
+    <ul class="sidenav" id="mobile-demo">
+        <li style="padding:20px">
+            <h4 data-user-username></h4>
+            <h5 data-user-cpf></h5>
+            <h5 data-cointer></h5>
+        </li>
+        <li><a href="logout.html">Sair</a></li>
+    </ul>
+    <!-- <br />
+    <br />
+    <br /> -->
+    <br />
+    <div class="container lightgray">
+        <h2>Todos os checkin's realizados.</h2>
+        
+        <div class="form-group">
+          <input id="buscarUsuario" type="text" class="form-control" />
+          <label for="buscarUsuario">Nome do usuário / CPF do usuário / Matrícula do usuário</label>
+        </div>
+        <div id="todosUsuarios"></div>
+    </div>
+    
+    <script>
+    
+        $(function(){
+          
+          let searchUsers = function(){
+          document.getElementById("todosUsuarios").innerHTML = 'Carregando...';
+        
+        IIDVrouteConnect({
+                method: "GET",
+                route: "smart/"+COINTER+"/2019/checkIn/todos?q="+$("#buscarUsuario").val(), 
+                loader: carregarTPesquisar
+            });
+      }
+      
+setTimeout(searchUsers, 500);
+
+      $("#buscarUsuario").on("change", searchUsers);
+
+          function carregarTPesquisar(data){
+            localStorage.setItem('checkIn_tipo', 'CONGRESSISTA');
+              localStorage.setItem('checkIn', JSON.stringify(data));
+              document.getElementById("todosUsuarios").innerHTML = '';
+              if(data.length > 0) data.forEach(adicionarCardTPesquisar);
+              else document.getElementById("todosUsuarios").innerHTML = 'Nenhum usuário localizado.';
+          }
+    
+          function adicionarCardTPesquisar(data){
+              document.getElementById("todosUsuarios").innerHTML += userCard(data);
+          }
+          
+function userCard(data){
+
+    let msg = data.tipo;
+    switch(data.tipo){
+      case 'TRABALHO':
+        msg = "Trabalho avaliado.";
+        break;
+      case 'CHECKIN_TRABALHO':
+        msg = "Check In de trabalho reaizado.";
+        break;
+      case 'CHECKIN_ENTRADA_CONGRESSISTA':
+        msg = 'Entrada de congressista no evento.';
+        break;
+      case 'CHECKIN_SAIDA_CONGRESSISTA':
+        msg = 'Saída de congressista no evento.';
+        break;
+      case 'CHECKIN_ENTRADA_MONITOR':
+        msg = 'Entrada de monitor no evento.';
+        break;
+      case 'CHECKIN_SAIDA_MONITOR':
+        msg = 'Saída de monitor no evento.';
+        break;
+      case 'CHECKIN_ENTRADA_PALESTRANTE':
+        msg = 'Entrada de palestrante no evento.';
+        break;
+      case 'CHECKIN_SAIDA_PALESTRANTE':
+        msg = 'Saída de palestrante no evento.';
+        break;
+      case 'CHECKIN_ENTRADA_CURSO':
+        msg = 'Entrada em curso.';
+        break;
+      case 'CHECKIN_SAIDA_CURSO':
+        msg = 'Saída de curso.';
+        break;
+    }
+
+    return [
+        "  <div class=\"row \">"
+        +"  <div class=\"col s12\">"
+        +"    <div class=\"card \">"
+        +"      <div class=\"card-content\">"
+        +"        <span class=\"card-title\">"+msg+"</span>"
+        +"      </div>"
+        +"<ul class=\"collection\">"
+        +"    <li class=\"collection-item\"><div>Trabalho<a href=\"#!\" class=\"secondary-content\">"+data.titulo_trab+"</a></div></li>"
+        +"    <li class=\"collection-item\"><div>Curso<a href=\"#!\" class=\"secondary-content\">"+data.titulo_curso+"</a></div></li>"
+        +"    <li class=\"collection-item\"><div>Nome<a href=\"#!\" class=\"secondary-content\">"+data.nome_user+"</a></div></li>"
+        +"    <li class=\"collection-item\"><div>Horário<a href=\"#!\" class=\"secondary-content\">"+Date(data.checkIn_data)+"</a></div></li>"
+        +"    <li class=\"collection-item\"><div>CH_ID<a href=\"#!\" class=\"secondary-content\">"+data.tipo+"</a></div></li>"
+        +"</ul>"
+        // +"      <div class=\"card-content\">"
+        // +"        <a href=\"alterar_checkin.html?id="+data.id+"\">Alterar Check In.</a>"
+        // +"      </div>"
+        +"    </div>"
+        +"  </div>"
+        +"</div>"
+      ];
+}
+
+        });
+    
+        </script>
+    </body>
+</html>
