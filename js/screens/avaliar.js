@@ -18,6 +18,8 @@ function findGetParameter(parameterName) {
   }
   
   $(function(){
+        
+
       let recalculate = function(){
         $("#APT").html(
             Number($("#AP0").val())+
@@ -34,6 +36,21 @@ function findGetParameter(parameterName) {
           }
       }
 
+      let todosTrabalhosPAvaliar = JSON.parse(localStorage.getItem('pAvaliar'));
+    let todosTrabalhosAvaliados = JSON.parse(localStorage.getItem('avaliados'));
+    let idTrabalho = findGetParameter('id');
+
+    let trabalho = todosTrabalhosPAvaliar.find((el) => {
+        return el.id == idTrabalho;
+    });
+
+    if(!trabalho){
+        trabalho = todosTrabalhosAvaliados.find((el) => {
+        return el.id == idTrabalho;
+        });
+    }
+      $("#tituloTrabalho").html(trabalho['titulo']);
+
       let avaliar = function(){
           try{
             form = {
@@ -41,7 +58,8 @@ function findGetParameter(parameterName) {
                 "recomendado": ($("#recomendado").val()),
                 "AP0": Number($("#AP0").val()),
                 "AP1": Number($("#AP1").val()),
-                "AP2": Number($("#AP2").val())
+                "AP2": Number($("#AP2").val()),
+                'comentarios': $("#comentarios").val()
             };
 
             IIDVrouteConnect({
