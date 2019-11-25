@@ -41,8 +41,53 @@
     <br /> -->
     <br />
     <div class="container lightgray">
-        <h2>Trabalhos já avaliados</h2>
-        <div id="trabalhosAvaliados"></div>
+        <h2>Trabalhos avaliados</h2>
+        <br />
+        <div class="form-group">
+          <input id="idTrabalho" type="text" class="form-control" />
+          <label for="idTrabalho">ID do Trabalho</label>
+        </div>
+        <br />
+        <div id="trabalhos"></div>
     </div>
+    <script>
+    
+    $(function(){
+      $("#idTrabalho").on("change", function(){
+          document.getElementById("trabalhos").innerHTML = 'Carregando...';
+
+          let id;
+        if(!isNaN($("#idTrabalho").val()) && ($("#idTrabalho").val() != '')){
+            id = toId(Number($("#idTrabalho").val()));
+        } else {
+            id = $("#idTrabalho").val();
+        }
+
+        IIDVrouteConnect({
+            method: "GET",
+            route: "smart/"+COINTER+"/2019/avaliador/presencial/trabalhos/avaliados?q="+id, 
+            loader: carregarTPesquisar
+        });
+      });
+      
+        IIDVrouteConnect({
+            method: "GET",
+            route: "smart/"+COINTER+"/2019/avaliador/presencial/trabalhos/avaliados", 
+            loader: carregarTPesquisar
+        });
+
+      function carregarTPesquisar(data){
+          localStorage.setItem('avaliados', JSON.stringify(data));
+          document.getElementById("trabalhos").innerHTML = '';
+          if(data.length > 0) data.forEach(adicionarCardTPesquisar);
+          else document.getElementById("trabalhos").innerHTML = 'Nenhum trabalho localizado.';
+      }
+
+      function adicionarCardTPesquisar(data){
+          document.getElementById("trabalhos").innerHTML += cardHTML(data.titulo, data.id, data.AP0, data.AP1, data.AP2, data.categoria);
+      }
+    });
+
+    </script>
     </body>
 </html>

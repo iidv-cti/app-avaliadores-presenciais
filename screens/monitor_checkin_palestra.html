@@ -41,11 +41,11 @@
     <br /> -->
     <br />
     <div class="container lightgray">
-        <h2>Todos os checkin's realizados.</h2>
+        <h2>Faça CheckIn de um usuário em uma palestra/mesa redonda</h2>
         
         <div class="form-group">
           <input id="buscarUsuario" type="text" class="form-control" />
-          <label for="buscarUsuario">Nome do usuário / CPF do usuário / Matrícula do usuário</label>
+          <label for="buscarUsuario">Nome da palestra/mesa redonda</label>
         </div>
         <div id="todosUsuarios"></div>
     </div>
@@ -53,92 +53,44 @@
     <script>
     
         $(function(){
-          
-          let searchUsers = function(){
+      $("#buscarUsuario").on("change", function(){
           document.getElementById("todosUsuarios").innerHTML = 'Carregando...';
         
         IIDVrouteConnect({
                 method: "GET",
-                route: "smart/"+COINTER+"/2019/checkIn/todos?q="+$("#buscarUsuario").val(), 
+                route: "smart/"+COINTER+"/2019/cursos/todos?q="+$("#buscarUsuario").val(), 
                 loader: carregarTPesquisar
             });
-      }
-      
-setTimeout(searchUsers, 500);
-
-      $("#buscarUsuario").on("change", searchUsers);
+      });
 
           function carregarTPesquisar(data){
             localStorage.setItem('checkIn_tipo', 'CONGRESSISTA');
-              localStorage.setItem('checkIn', JSON.stringify(data));
+              localStorage.setItem('cursos', JSON.stringify(data));
               document.getElementById("todosUsuarios").innerHTML = '';
               if(data.length > 0) data.forEach(adicionarCardTPesquisar);
-              else document.getElementById("todosUsuarios").innerHTML = 'Nenhum usuário localizado.';
+              else document.getElementById("todosUsuarios").innerHTML = 'Nenhum trabalho localizado.';
           }
     
           function adicionarCardTPesquisar(data){
-              document.getElementById("todosUsuarios").innerHTML += userCard(data);
+              document.getElementById("todosUsuarios").innerHTML += userCard(data.nome, data.cpf, data.id);
           }
           
-function userCard(data){
-
-    let msg = data.tipo;
-    switch(data.tipo){
-      case 'TRABALHO':
-        msg = "Trabalho avaliado.";
-        break;
-      case 'CHECKIN_TRABALHO':
-        msg = "Check In de trabalho reaizado.";
-        break;
-      case 'CHECKIN_ENTRADA_CONGRESSISTA':
-        msg = 'Entrada de congressista no evento.';
-        break;
-      case 'CHECKIN_SAIDA_CONGRESSISTA':
-        msg = 'Saída de congressista no evento.';
-        break;
-      case 'CHECKIN_ENTRADA_MONITOR':
-        msg = 'Entrada de monitor no evento.';
-        break;
-      case 'CHECKIN_SAIDA_MONITOR':
-        msg = 'Saída de monitor no evento.';
-        break;
-      case 'CHECKIN_ENTRADA_PALESTRANTE':
-        msg = 'Entrada de palestrante no evento.';
-        break;
-      case 'CHECKIN_SAIDA_PALESTRANTE':
-        msg = 'Saída de palestrante no evento.';
-        break;
-      case 'CHECKIN_ENTRADA_CURSO':
-        msg = 'Entrada em curso.';
-        break;
-      case 'CHECKIN_SAIDA_CURSO':
-        msg = 'Saída de curso.';
-        break;
-    }
-
+function userCard(name, cpf, id){
     return [
         "  <div class=\"row \">"
         +"  <div class=\"col s12\">"
         +"    <div class=\"card \">"
         +"      <div class=\"card-content\">"
-        +"        <span class=\"card-title\">"+msg+"</span>"
+        +"        <span class=\"card-title\">"+name+"</span>"
         +"      </div>"
-        +"<ul class=\"collection\">"
-        +"    <li class=\"collection-item\"><div>Trabalho<a href=\"#!\" class=\"secondary-content\">"+data.titulo_trab+"</a></div></li>"
-        +"    <li class=\"collection-item\"><div>Curso<a href=\"#!\" class=\"secondary-content\">"+data.titulo_curso+"</a></div></li>"
-        +"    <li class=\"collection-item\"><div>Nome<a href=\"#!\" class=\"secondary-content\">"+data.nome_user+"</a></div></li>"
-        +"    <li class=\"collection-item\"><div>Horário<a href=\"#!\" class=\"secondary-content\">"+(new Date(Number(data.checkIn_data)*1000))+"</a></div></li>"
-        +"    <li class=\"collection-item\"><div>CH_ID<a href=\"#!\" class=\"secondary-content\">"+data.tipo+"</a></div></li>"
-        +"</ul>"
-        // +"      <div class=\"card-content\">"
-        // +"        <a href=\"alterar_checkin.html?id="+data.id+"\">Alterar Check In.</a>"
-        // +"      </div>"
+        +"      <div class=\"card-content\">"
+        +"        <a href=\"checkin_inscritos_palestra.html?idCurso="+id+"\">Escolher palestra/mesa redonda.</a>"
+        +"      </div>"
         +"    </div>"
         +"  </div>"
         +"</div>"
       ];
 }
-
         });
     
         </script>
