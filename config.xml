@@ -2,7 +2,7 @@
     version='1.0' 
     encoding='utf-8'?>
 <widget 
-    id="com.iidv.apoio.cointer-2019" 
+    id="com.iidv.apoio.cointer2019" 
     version="1.3.5" 
     xmlns="http://www.w3.org/ns/widgets" 
     xmlns:gap="https://phonegap.com/ns/1.0"
