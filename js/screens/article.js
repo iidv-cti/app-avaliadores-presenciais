@@ -18,8 +18,9 @@ function Id(num){
 }
 
 $(function(){
-  let todosTrabalhosPAvaliar = JSON.parse(localStorage.getItem('pAvaliar'));
-  let todosTrabalhosAvaliados = JSON.parse(localStorage.getItem('avaliados'));
+  
+  let todosTrabalhosPAvaliar = localStorage.getItem('pAvaliar') ? JSON.parse(localStorage.getItem('pAvaliar')) : [];
+  let todosTrabalhosAvaliados = localStorage.getItem('avaliados') ? JSON.parse(localStorage.getItem('avaliados')) : [];
   let idTrabalho = findGetParameter('id');
 
   let trabalho = todosTrabalhosPAvaliar.find((el) => {
