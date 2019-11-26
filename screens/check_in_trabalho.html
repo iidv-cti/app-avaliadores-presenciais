@@ -64,14 +64,14 @@
                                 <input type="text" disabled id="tipoTrabalho" />
                             </div>
                         </div>
-                        
+                        <h5 id="sucesso"> </h5>
 
                     </form>
                     
                     <div class="row">
                             <div class="col s12">
                                 <a href="painel.html" class="btn waves-effect waves-light">Voltar</a>
-                                <button class="btn waves-effect waves-light" id="act" name="action">GERAR CHECK-IN
+                                <button class="btn waves-effect waves-light" id="act" name="action">GERAR CHECK IN
                                     <i class="material-icons right">send</i>
                                 </button> 
                             </div>
@@ -92,8 +92,7 @@
             $(function(){
 
                 let todosTrabalhosPAvaliar = localStorage.getItem('pAvaliar') ? JSON.parse(localStorage.getItem('pAvaliar')) : [];
-
-                let todosTrabalhosAvaliados = JSON.parse(localStorage.getItem('avaliados'));
+                let todosTrabalhosAvaliados = localStorage.getItem('avaliados') ? JSON.parse(localStorage.getItem('avaliados')) : [];
                 let idTrabalho = findGetParameter('idTrabalho');
 
                 let trabalho = todosTrabalhosPAvaliar.find((el) => {
@@ -128,7 +127,8 @@
                         loader: function(el){
                             trava = false;
                             if(el === 1){
-                                alert("CheckIn realizado com sucesso!");
+                                $("#sucesso").val("Check-In realizado com Sucesso!!");
+
                                 window.location = 'painel.html';
                             } else {
                                 alert("Ocorreu um erro ao computar o CheckIn, aguarde um pouco e tente novamente.")
