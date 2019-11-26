@@ -36,7 +36,7 @@ function findGetParameter(parameterName) {
           }
       }
 
-      let todosTrabalhosPAvaliar = JSON.parse(localStorage.getItem('pAvaliar'));
+      let todosTrabalhosPAvaliar = localStorage.getItem('pAvaliar') ? JSON.parse(localStorage.getItem('pAvaliar')) : [];
     let todosTrabalhosAvaliados = JSON.parse(localStorage.getItem('avaliados'));
     let idTrabalho = findGetParameter('id');
 

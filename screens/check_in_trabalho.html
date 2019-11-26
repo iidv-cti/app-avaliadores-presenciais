@@ -28,7 +28,7 @@
                     </ul>
                 <div class="container">
                 <div class="section">
-                    <h5>Check In do trabalho</h5>
+                    <h5>Check-In do trabalho</h5>
                     <p>Realize o checkin do trabalho.</p>
                 </div>
                     <form id="registro" method="POST" action="?">
@@ -71,7 +71,7 @@
                     <div class="row">
                             <div class="col s12">
                                 <a href="painel.html" class="btn waves-effect waves-light">Voltar</a>
-                                <button class="btn waves-effect waves-light" id="act" name="action">GERAR CHECK IN
+                                <button class="btn waves-effect waves-light" id="act" name="action">GERAR CHECK-IN
                                     <i class="material-icons right">send</i>
                                 </button> 
                             </div>
@@ -91,7 +91,8 @@
             
             $(function(){
 
-              let todosTrabalhosPAvaliar = JSON.parse(localStorage.getItem('pAvaliar'));
+                let todosTrabalhosPAvaliar = localStorage.getItem('pAvaliar') ? JSON.parse(localStorage.getItem('pAvaliar')) : [];
+
                 let todosTrabalhosAvaliados = JSON.parse(localStorage.getItem('avaliados'));
                 let idTrabalho = findGetParameter('idTrabalho');
 
