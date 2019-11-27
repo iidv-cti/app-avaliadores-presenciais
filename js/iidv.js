@@ -85,7 +85,7 @@ function IIDVuserStatus(fn){
 function painel(){
   
   switch(appStore.user.categoria){
-    case 'monitor':
+    case '11':
         $("#apenasMonitor").css('display', 'block');
         break;
   }
