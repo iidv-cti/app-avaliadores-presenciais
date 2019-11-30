@@ -64,7 +64,7 @@ $(function(){
 // function adicionarCardPAvaliar(data){
 //     document.getElementById("regPAvaliar").innerHTML += cardHTML(data.titulo, data.id, data.AP0, data.AP1, data.AP2);
 // }
-  
+
 function Id(num){
   let cn = 100;
   let cp = 5;

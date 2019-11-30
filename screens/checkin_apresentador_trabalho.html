@@ -41,6 +41,7 @@
     <br /> -->
     <br />
     <div class="container lightgray">
+        <button onclick="voltar()" type="button" class="btn btn-primary">Voltar</button>
         <h5>Trabalho escolhido, agora defina quem está apresentando:</h5>
         
         <div class="form-group">
@@ -51,7 +52,9 @@
     </div>
     
     <script>
-    
+     function voltar(){
+            window.location = 'painel.html';
+        }
         $(function(){
       $("#buscarUsuario").on("change", function(){
           document.getElementById("todosUsuarios").innerHTML = 'Carregando...';

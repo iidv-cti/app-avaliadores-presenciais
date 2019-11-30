@@ -44,6 +44,8 @@
         <h5>CheckIn de Pôster</h5>
         <br />
         <div class="form-group">
+                <button onclick="voltar()" type="button" class="btn btn-primary">Voltar</button>
+
           <input id="idTrabalho" type="text" class="form-control" />
           <label for="idTrabalho">ID do Trabalho / Nome do Trabalho / Autor do Trabalho</label>
         </div>
@@ -51,7 +53,9 @@
         <div id="trabalhos"></div>
     </div>
     <script>
-    
+     function voltar(){
+            window.location = 'painel.html';
+        }
     $(function(){
       $("#idTrabalho").on("change", function(){
           document.getElementById("trabalhos").innerHTML = 'Carregando...';

@@ -51,8 +51,11 @@
     </div>
     
     <script>
-    
+     function voltar(){
+            window.location = 'painel.html';
+        }
         $(function(){
+
       $("#buscarUsuario").on("change", function(){
           document.getElementById("todosUsuarios").innerHTML = 'Carregando...';
         

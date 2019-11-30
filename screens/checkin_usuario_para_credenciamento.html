@@ -1,3 +1,5 @@
+<!-- Eu dupliquei esse arquivo para não ter que toda vez que fizer o checkin voltar para tela do paninel, acho mais viavel voltar para  a busca de usuários.-->
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -28,23 +30,22 @@
                     </ul>
                 <div class="container">
                 <div class="section">
-                    <h5>Check-In de usuário em palestra/mesa redonda</h5>
-                    <p>Realize o checkin do usuário.</p>
+                    <h5>Check-In</h5>
+                    <p>Realize o checkin.</p>
                 </div>
                     <form id="registro" method="POST" action="?">
                         
-                          <div class="row">
+                        <div class="row">
                             <div class="input-field col s12">
                                 <select id="checkInTypeDeclared">
                                     <option value="">Escolha o tipo de Check-In</option>
-                                    <option value="CHECKIN_ENTRADA_PALESTRA">Entrada na palestra</option>
-                                    <option value="CHECKIN_SAIDA_PALESTRA">Saída da palestra</option>
+                                    <option value="CHECKIN_ENTRADA_CONGRESSISTA">Entrada (Congressista)</option>
+                                    <option value="CHECKIN_SAIDA_CONGRESSISTA">Saída (Congressista)</option>
                                 </select>
                                 <label for="valor">Modo de Check-In</label>
                             </div>
                         </div>
 
-                        <B>Dados do usuário</B>
                         <div class="row">
                             <div class="input-field col s12">
                                 <input type="text" disabled id="nomeUsuario" />
@@ -56,25 +57,23 @@
                                 <input type="text" disabled id="cpfUsuario" />
                             </div>
                         </div>
-                        
-                        <B>Dados do curso</B>
-                        
+
                         <div class="row">
                             <div class="input-field col s12">
-                                <input type="text" disabled id="tituloCurso" />
+                                <input type="text" disabled id="checkInType" />
                             </div>
                         </div>
+                        
 
-                    </form>
-                    
                     <div class="row">
                             <div class="col s12">
-                                <a href="painel.html" class="btn waves-effect waves-light">Voltar</a>
+                                <a href="monitor_checkin_usuario.html" class="btn waves-effect waves-light">Voltar</a>
                                 <button class="btn waves-effect waves-light" id="act" name="action">GERAR CHECK-IN
                                     <i class="material-icons right">send</i>
                                 </button> 
                             </div>
                         </div>
+                    </form>
                     <br />
                     <br />
                     <br />
@@ -87,42 +86,36 @@
             </div>        
 
             <script>
-             function voltar(){
-            window.location = 'painel.html';
-        }
+            
             $(function(){
-
-                let todosCursos = JSON.parse(localStorage.getItem('cursos'));
-                let idCurso = findGetParameter('idCurso');
-
-                let curso = todosCursos.find((el) => {
-                    return el.id == idCurso;
-                });
-
+              $("#checkInType").val(localStorage.getItem('checkIn_tipo'));
+              let todosTrabalhosPAvaliar = JSON.parse(localStorage.getItem('pAvaliar'));
               let todosCheckIn = JSON.parse(localStorage.getItem('checkIn'));
-              let idUsuario = findGetParameter('idUsuario');
+              let idUsuario = findGetParameter('id');
 
               let usuario = todosCheckIn.find((el) => {
                 return el.id == idUsuario;
               });
 
-              console.log(usuario)
-
               $("#nomeUsuario").val(usuario['nome']);
               $("#cpfUsuario").val(usuario['cpf']);
-              $("#tituloCurso").val(curso['nome']);
+
+              $("#registro").on("submit", function(){
+                   
+                  let checkInTypeDeclared = $("#checkInTypeDeclared").val();
+
+                  if(
+                    checkInTypeDeclared.length === 0
+                  ){
+                      alert("Por favor preencha todos os campos.");
+                      return false;
+                  }
+
+
+                  return false;
+              })
 
               $("#act").click(function(){
-                
-                let checkInTypeDeclared = $("#checkInTypeDeclared").val();
-
-                if(
-                  checkInTypeDeclared.length === 0
-                ){
-                    alert("Por favor preencha todos os campos.");
-                    return false;
-                }
-
                 if(!trava){
                     trava = true;
                     IIDVrouteConnect({
@@ -132,7 +125,7 @@
                             trava = false;
                             if(el === 1){
                                 alert("CheckIn realizado com sucesso!");
-                                window.location = 'painel.html';
+                                window.location = 'monitor_checkin_usuario.html';
                             } else {
                                 alert("Ocorreu um erro ao computar o CheckIn, aguarde um pouco e tente novamente.")
                             }
@@ -142,9 +135,7 @@
                         "cpf": $("#cpfUsuario").val(),
                         "id": usuario['id'],//$("#cpfUsuario").val(),
                         "matricula": usuario['matricula'],//$("#cpfUsuario").val(),
-                        "nome": $("#nomeUsuario").val(),
-                        "titulo_curso": curso['nome'],
-                        "id_curso": curso['id']
+                        "nome": $("#nomeUsuario").val()
                     })
                 } else {
                     alert("O sistema está processando seu pedido... Aguarde até termos uma resposta.");

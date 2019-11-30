@@ -78,7 +78,9 @@
             </div>        
 
             <script>
-            
+             function voltar(){
+            window.location = 'painel.html';
+        }
             $(function(){
               $("#checkInType").val(localStorage.getItem('checkIn_tipo'));
               let todosTrabalhosPAvaliar = JSON.parse(localStorage.getItem('pAvaliar'));
