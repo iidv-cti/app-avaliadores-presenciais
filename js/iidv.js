@@ -98,10 +98,12 @@ function painel(){
 
     case 'organizador':
       $("#apenasComissao").css('display', 'block');
+      $("#apenasMonitor").css('display', 'block');
+
       break;
   }
 
-  if(appStore.user.superuser == 1){
+  if(appStore.user.conselho == 1 ){
     $("#apenasMonitor").css('display', 'block');
     $("#apenasAvaliador").css('display', 'block');
     $("#apenasConselho").css('display', 'block');
