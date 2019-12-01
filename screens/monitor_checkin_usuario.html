@@ -56,10 +56,10 @@
          function voltar(){
             window.location = 'painel.html';
         }
-    
+        
         $(function(){
-            $("[data-cpf]").mask("000.000.000-00", {reverse: 0});
-
+            
+            $("[data-cpf]").mask("000.000.000-00", {reverse: 0})
       $("#buscarUsuario").on("change", function(){
           document.getElementById("todosUsuarios").innerHTML = 'Carregando...';
         

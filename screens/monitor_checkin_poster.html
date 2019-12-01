@@ -77,7 +77,7 @@
       function carregarTPesquisar(data){
           localStorage.setItem('avaliados', JSON.stringify(data));
           document.getElementById("trabalhos").innerHTML = '';
-          if(data.length > 0) data.forEach(adicionarCardTPesquisar);
+          if(data.length > 0) adicionarCardTPesquisar(data[0]);
           else document.getElementById("trabalhos").innerHTML = 'Nenhum trabalho localizado.';
       }
 
